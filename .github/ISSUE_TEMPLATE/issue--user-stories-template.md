@@ -19,6 +19,6 @@ As a **role** I can **capability** so that **received benefit**
 
 **Tasks**
 
-[ ] T1:
+- [ ] T1:
 
-[ ] T2:
+- [ ] T2:
