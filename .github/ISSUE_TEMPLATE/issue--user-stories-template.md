@@ -1,7 +1,7 @@
 ---
 name: 'Issue: User Stories Template'
 about: A template for creating user stories
-title: ''
+title: 'USER STORIES:'
 labels: ''
 assignees: EddieCodeHub
 
@@ -9,7 +9,7 @@ assignees: EddieCodeHub
 
 As a **role** I can **capability** so that **received benefit**
 
-As a **role** I can **capability** so that **received benefit**
+**Acceptance Criteria**
 
 - AC1:
 
