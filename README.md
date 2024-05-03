@@ -5,6 +5,7 @@ I decided to organise the website in a Heirarchial Tree Structure. This it to en
 
 ![Website user navigation flowchart](assets/readme_images/Nerd_News_Flowchart.png)
 
+### Skeleton
 
 #### Wirefames
 
