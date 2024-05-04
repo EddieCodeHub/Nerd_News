@@ -1,15 +1,73 @@
+# Nerd News
+
+Nerd News is a website designed for people who are interested in Gaming and gaming related Tech. 
+
+The website will provide a place for news posts to be created and discussed by users of the site. Users are able to create and post their own news/discussion posts in order to begin a discussion on the subject.
+Users can then comment on these posts and form a discussion. Users will be able to Upvote / Downvote comments in order to move the best comments to the top of the comment section.
+
+Visit the deployed site [here]()
+
+## Table of Contents
+
+
+## User Experience (UX)
+
+### Strategy
+
+#### Project Goals
+
+The Website Should Feature:
+
+- Responsive Design so that the site is usable on all screen sizes.
+
+- A simple colour scheme to keep the site looking modern and to not distract from the content.
+
+- The structure is simple and site navigation is intuitive.
+
+- Site users are able to register an account in order to interact with the content.
+
+- Site users are able to upvote or downvote comments in order to move more appropriate comments to the top of the comment section.
+
+#### User Goals
+
+- As the Site Admin, I want to be able to manage all content on the site.
+
+- As a Site User, I want to be able to interact with the content
+
+- As a Site user, I want the content to be easy to read and understand.
+
+- As a Site User, I want to be able to navigate the site in an intuitive way.
+
+- As a Site User, I want to be able to create my own posts and comments.
+
+- As a Site user, I want to be able to correct any mistakes I make in posts / comments.
+
+#### Strategy Table
+
+Feature | Importance | Vability / Feasability
+--- | --- | --- 
+
 ### Structure
 I decided to organise the website in a Heirarchial Tree Structure. This it to encourage the user to navigate through the site in an efficient and intuitive way. Below you can find the website user navigation flowchart.
 
-[Lucidchart](https://lucid.app/) Was used to create this flowchart
+[Lucidchart](https://lucid.app/) Was used to create this flowchart.
 
 ![Website user navigation flowchart](assets/readme_images/Nerd_News_Flowchart.png)
 
+- Header, footer and navigation bar are featured on all pages.
+
+- Links and forms provide feedback to the user.
+
+- The ability to interact with the site content is provided when the site user registers an account.
+
+- An error 404 page should be available.
+
 ### Skeleton
 
-#### Wirefames
+#### Wireframes
 
 [Balsamiq](https://balsamiq.com/) was used to show the planning of the appearance of the site. Also displaying the diferent elements and pages.
+
 
 Site Element | Desktop View | Mobile View
 --- | --- | ---
