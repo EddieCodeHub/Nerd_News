@@ -46,6 +46,47 @@ The Website Should Feature:
 
 Feature | Importance | Vability / Feasability
 --- | --- | --- 
+Responsive design | 5 | 5
+Account registration | 5 | 5
+Social Media signup | 2 | 2
+Create, edit and delete news posts | 5 | 4
+Create, edit and delete comments | 5 | 4
+Upvote / downvote comments | 4 | 3
+Abiity to add profile picture | 3 | 2
+Change Homepage view (most recent / most active) | 3 | 2
+
+### Scope
+
+After Creating the strategy table, it is clear that the project should be released in multiple phases. The first phase will include all features required to build a minimal viable product. Any remaining planned features will be released in later phases.
+
+#### First Phase
+
+- Responsive Design
+
+- Account Registration
+
+- Create, edit and delete news posts
+
+- Create, edit and delete comments
+
+- Upvote / Downvote comments
+
+#### Second Phase
+
+- Social media signup
+
+- Ability to add profile pictures
+
+- Change homepage view
+
+#### User Stories
+
+Github Projects was used as my project management to track user stories. Using a Kanban board help me to focus on which tasks i should be working on and keep track of the projects progress.
+
+#### Start
+
+![User stories - start image](assets/readme_images/Nerd_News_User_Stories_Start.png)
+
 
 ### Structure
 I decided to organise the website in a Heirarchial Tree Structure. This it to encourage the user to navigate through the site in an efficient and intuitive way. Below you can find the website user navigation flowchart.
