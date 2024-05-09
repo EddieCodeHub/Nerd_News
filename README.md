@@ -103,6 +103,48 @@ I decided to organise the website in a Heirarchial Tree Structure. This it to en
 
 - An error 404 page should be available.
 
+#### Database Model
+
+Below is a Database flow diagram that displays the connections between different parts of the database and how information is being passed between them. The database is being managed using [PostgreSQL](https://www.postgresql.org/)
+
+The flow diagram was created using [DrawSQL](https://drawsql.app/)
+
+![Database flow diagram](assets/readme_images/drawSQL_data_flow_chart.png)
+
+#### News Post Model
+
+- Title: Unique news post title provided by the author.
+
+- Author: Created from the post creators ID and stored as a foreighn key.
+
+- Content: News Post content provided by the user.
+
+- Slug: created from the news post title and saved as a unique key to identify the post by.
+
+- Created on: Date and time set automatically when the question is created.
+
+- Comment Score: Sum of amount of comments on the post. To be used for ability to filter homepage to "most active"
+
+#### Comment Model
+
+- Post: A foreign key that has been stored from the News Post model. Now stored to identify the post being commented on.
+
+- Author: Author of the comment being stored as a foreign key.
+
+- Body: Content of the comment supplied by the user
+
+- Created on: Date and time set automatically when the comment is created.
+
+- Votes Score: Calculated score of the sum of the comments Up / Downvotes.
+
+#### Comment Vote Model
+
+- Voter: User that is voting on the comment being stored as a foreign key.
+
+- Score: Score of the Vote, Up being +1 and Down being -1
+
+- Comment: Foreign key from the comment model now being used to identify the comment being voted on. stored as a foriegn key.
+
 ### Skeleton
 
 #### Wireframes
