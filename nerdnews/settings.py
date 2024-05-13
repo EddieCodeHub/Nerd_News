@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-1&8kz=b5l--h-&7n$pf-&7injv(_=eubtq0%8=h8_yp187fr4a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['localhost','.herokuapp.com']
 
 
 # Application definition
@@ -89,6 +89,11 @@ WSGI_APPLICATION = 'nerdnews.wsgi.application'
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeanyapp.com",
+    "https://*.herokuapp.com"
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
