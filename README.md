@@ -123,6 +123,8 @@ The flow diagram was created using [DrawSQL](https://drawsql.app/)
 
 - Created on: Date and time set automatically when the question is created.
 
+- Updated on: Date and time set automatically whenever the question is updated
+
 - Comment Score: Sum of amount of comments on the post. To be used for ability to filter homepage to "most active"
 
 #### Comment Model
@@ -134,6 +136,8 @@ The flow diagram was created using [DrawSQL](https://drawsql.app/)
 - Body: Content of the comment supplied by the user
 
 - Created on: Date and time set automatically when the comment is created.
+
+- Updated on: Date and time set automatically whenever the question is updated
 
 - Votes Score: Calculated score of the sum of the comments Up / Downvotes.
 
