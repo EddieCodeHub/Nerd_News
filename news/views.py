@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import News_Post, Comment
 
 
 # Create your views here.
-
-def news_page(request):
-    return HttpResponse("Hello, News!")
+class News_Post_List(generic.ListView):
+    queryset = News_Post.objects.all()
+    template_name = "news_post_list.html"
