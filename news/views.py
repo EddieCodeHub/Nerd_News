@@ -4,6 +4,7 @@ from .models import News_Post, Comment
 
 
 # Create your views here.
-class News_Post_List(generic.ListView):
+class news_post_list(generic.ListView):
     queryset = News_Post.objects.all()
-    template_name = "news_post_list.html"
+    template_name = "news/index.html"
+    paginate_by = 3
