@@ -26,9 +26,16 @@ def post_detail(request, slug):
 
     queryset = News_Post.objects.all()
     post = get_object_or_404(queryset, slug=slug)
+    comments = post.comments.all().order_by("-created_on")
+    comment_count = post.comments.count()
+
 
     return render(
         request,
         "news/post_detail.html",
-        {"News_Post": post},
+        {
+            "News_Post": post,
+            "comments": comments,
+            "comment_count": comment_count,
+        },
     )
