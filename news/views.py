@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import News_Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, NewsPostForm
 
 
 # Create your views here.
@@ -11,6 +11,23 @@ class news_post_list(generic.ListView):
     queryset = News_Post.objects.all()
     template_name = "news/index.html"
     paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = NewsPostForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = NewsPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False, user=request.user)
+            post.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Post added successfully.'
+            )
+            return redirect('home')
+        return self.get(request, *args, **kwargs)
 
 
 def post_detail(request, slug):
@@ -97,3 +114,20 @@ def comment_delete(request, slug, comment_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+def add_post(request):
+    if request.method == "POST":
+        form = NewsPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False, user=request.user)
+            post.author = request.user
+            post.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Post added successfully.'
+            )
+            return redirect('home')
+        else:
+            print(form.errors)
+    return redirect('home')
+        
