@@ -62,6 +62,23 @@
           <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
           <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
           {% endif %}
+          {% if user.is_authenticated %}
+          <form method="post" action="{% url 'vote' comment.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="value" value="1">
+            <button type="submit" class="btn btn-link no-underline">
+              <i class="fas fa-arrow-up"></i> {{ comment.upvotes|default:0 }}
+            </button>
+          </form>
+    
+          <form method="post" action="{% url 'vote' comment.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="value" value="-1">
+            <button type="submit" class="btn btn-link no-underline">
+              <i class="fas fa-arrow-down"></i> {{ comment.downvotes|default:0 }}
+            </button>
+          </form>
+        {% endif %}
         </div>
         <!-- Our for loop ends here -->
         {% endfor %}

@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .models import News_Post, Comment
+from django.db.models import Sum, Case, When, IntegerField
+from .models import News_Post, Comment, Vote
 from .forms import CommentForm, NewsPostForm
 
 
@@ -46,7 +47,10 @@ def post_detail(request, slug):
 
     queryset = News_Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
-    comments = post.comments.all().order_by("-created_on")
+    comments = Comment.objects.filter(post=post).annotate(
+        upvotes=Sum(Case(When(votes__value=1, then=1), output_field=IntegerField())),
+        downvotes=Sum(Case(When(votes__value=-1, then=1), output_field=IntegerField())),
+    ).order_by('-upvotes')
     comment_count = post.comments.count()
 
     if request.method == "POST":
@@ -131,3 +135,20 @@ def add_post(request):
             print(form.errors)
     return redirect('home')
         
+
+def vote(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    value = int(request.POST['value'])
+    post = get_object_or_404(News_Post, id=comment.post.id)
+
+    vote, created = Vote.objects.get_or_create(
+        user=request.user,
+        comment=comment,
+        defaults={'value': value},
+    )
+
+    if not created and vote.value != value:
+        vote.value = value
+        vote.save()
+
+    return redirect('post_detail', slug=post.slug)

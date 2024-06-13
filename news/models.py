@@ -30,8 +30,29 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        ordering = ['-created_on']
+    def vote_total(self):
+       return self.votes.aggregate(total=models.Sum('value'))['total'] or 0
+
 
     def __str__(self):
         return f"Comment by {self.author} on {self.post}"
+    
+
+class Vote(models.Model):
+    UPVOTE = 1
+    DOWNVOTE = -1
+
+    VOTE_CHOICES = (
+        (UPVOTE, 'Upvote'),
+        (DOWNVOTE, 'Downvote'),
+    )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='votes')
+    value = models.IntegerField(choices=VOTE_CHOICES)
+
+    class Meta:
+        unique_together = ('user', 'comment')
+
+    def __str__(self):
+        return f"{self.value} by {self.user} on {self.comment}"
