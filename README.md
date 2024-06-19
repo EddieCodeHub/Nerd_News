@@ -99,6 +99,10 @@ Github Projects was used as my project management to track user stories. Using a
 
 ![User stories - week three image](assets/readme_images/Nerd_News_User_Stories_Week_3.png)
 
+#### Week 4
+
+![User stories - week three image](assets/readme_images/Nerd_News_User_Stories_Week_4.png)
+
 ### Structure
 I decided to organise the website in a Heirarchial Tree Structure. This it to encourage the user to navigate through the site in an efficient and intuitive way. Below you can find the website user navigation flowchart.
 
