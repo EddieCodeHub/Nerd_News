@@ -5,17 +5,17 @@
 <!-- index.html content starts here -->
 <div>
     {% if user.is_authenticated %}
-    <form method="post" action="{% url 'home' %}">
+    <form method="post" action="{% url 'home' %}" id="postForm">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add Post</button>
+        <button type="submit" id="submitPostButton">Add Post</button>
     </form>
     {% endif %}
 </div>
 <div class="container-fluid">
     <div class="row">
 
-        <!-- Blog Entries Column -->
+        <!-- News Posts -->
         <div class="col-12 mt-3 left">
             <div class="row">
                 {% for News_Post in news_post_list %}
@@ -31,6 +31,10 @@
                             <hr />
                             <p class="card-text text-muted h6">{{ News_Post.created_on }}
                             </p>
+                            {% if user.is_authenticated and user == News_Post.author %}
+                            <a href="{% url 'post_edit' News_Post.slug %}" class="btn btn-primary btn-edit-post">Edit</a>
+                            <a href="{% url 'post_delete' News_Post.slug %}" class="btn btn-danger btn-delete-post">Delete</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -57,4 +61,8 @@
 </div>
 
 <!-- index.html content ends here -->
+{% endblock %}
+
+{% block extras %}
+<script src="{% static 'js/post.js' %}"></script>
 {% endblock %}

@@ -136,6 +136,41 @@ def add_post(request):
     return redirect('home')
         
 
+def post_edit(request, slug):
+    """
+    view to edit posts
+    """
+    post = get_object_or_404(News_Post, slug=slug)
+    if request.method == "POST":
+        post_form = NewsPostForm(data=request.POST, instance=post)
+
+        if post_form.is_valid() and post.author == request.user:
+            post = post_form.save()
+            messages.add_message(request, messages.SUCCESS, 'Post Updated!')
+            return redirect('home')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating post!')
+            return render(request, 'news/index.html', {'form': post_form})
+    else:
+        post_form = NewsPostForm(instance=post)
+    return render(request, 'news/index.html', {'form': post_form})
+
+
+
+def post_delete(request, slug):
+    """
+    view to delete post
+    """
+    post = get_object_or_404(News_Post, slug=slug)
+    if post.author == request.user:
+        post.delete()
+        messages.add_message(request, messages.SUCCESS, 'Post deleted!')
+        return redirect('home')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own posts!')
+        return redirect('home', args=[slug])
+
+
 def vote(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
     value = int(request.POST['value'])
