@@ -3,15 +3,15 @@
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="post-form">
-    {% if user.is_authenticated %}
+{% if user.is_authenticated %}
+<div class="post-form col-10 col-md-8 col-lg-6">
     <form method="post" action="{% url 'home' %}" id="postForm">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" id="submitPostButton" class="btn-post">Add Post</button>
     </form>
-    {% endif %}
 </div>
+{% endif %}
 <div class="container-fluid">
     <div class="row">
 
