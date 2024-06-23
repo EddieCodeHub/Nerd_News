@@ -1,5 +1,7 @@
+/* CSS used/edited from codestar blog */
+
 body {
-    background-color: #F9FAFC;
+    background-color: #cc99ff;
 }
 
 .brand {
@@ -9,29 +11,17 @@ body {
     color: #4A4A4F;
 }
 
-.red-o {
-    color: #E84610;
-}
-
-.thin {
-    font-weight: 300;
-}
-
 .light-bg {
-    background-color: #fff;
-}
-
-.dark-bg {
-    background-color: #445261;
+    background-color: #e6ccff;
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: #cc99ff;
 }
 
 .card {
     border: none;
-    background-color: transparent;
+    background-color: white; 
 }
 
 .image-container {
@@ -52,7 +42,7 @@ body {
 }
 
 .author {
-    color: white;
+    color: #4A4A4F;
     margin: 4px;
     text-transform: uppercase;
 }
@@ -166,3 +156,15 @@ body {
 .no-underline {
     text-decoration: none;
   }
+
+.post-container {
+    display: flex;
+    flex-direction: column; /* Stack posts vertically */
+    align-items: center; /* Center items horizontally in the container */
+    justify-content: center; /* Center items vertically if the container has a specified height */
+    width: 100%;
+}
+
+.post-container > * {
+    width: 80%;
+}

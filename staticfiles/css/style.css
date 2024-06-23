@@ -1,5 +1,7 @@
+/* CSS used/edited from codestar blog */
+
 body {
-    background-color: #F9FAFC;
+    background-color: #cc99ff;
 }
 
 .brand {
@@ -9,29 +11,17 @@ body {
     color: #4A4A4F;
 }
 
-.red-o {
-    color: #E84610;
-}
-
-.thin {
-    font-weight: 300;
-}
-
 .light-bg {
-    background-color: #fff;
-}
-
-.dark-bg {
-    background-color: #445261;
+    background-color: #e6ccff;
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: #cc99ff;
 }
 
 .card {
     border: none;
-    background-color: transparent;
+    background-color: #fff;
 }
 
 .image-container {
@@ -52,7 +42,7 @@ body {
 }
 
 .author {
-    color: white;
+    color: #4A4A4F;
     margin: 4px;
     text-transform: uppercase;
 }
@@ -159,3 +149,10 @@ body {
 .approval {
     color: rgb(222, 146, 168);
 }
+
+
+/* Custom CSS */
+
+.no-underline {
+    text-decoration: none;
+  }

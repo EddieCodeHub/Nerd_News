@@ -19,15 +19,16 @@
         <div class="col-12 mt-3 left">
             <div class="row">
                 {% for News_Post in news_post_list %}
-                <div class="col-md-4">
+                <div class="post-container col-md-10">
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="image-container">  
-                                <p class="author">Author: {{ News_Post.author }}</p>    
+                                <p class="author">{{ News_Post.author }}</p>    
                             </div>
                             <a href="{% url 'post_detail' News_Post.slug %}" class="post-link">
                                 <h2 class="card-title">{{ News_Post.title }}</h2>
                             </a>
+                            <p class="post-preview">{{ News_Post.summary }}</p>
                             <hr />
                             <p class="card-text text-muted h6">{{ News_Post.created_on }}
                             </p>
