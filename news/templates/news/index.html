@@ -3,12 +3,12 @@
 {% block content %}
 
 <!-- index.html content starts here -->
-<div>
+<div class="">
     {% if user.is_authenticated %}
     <form method="post" action="{% url 'home' %}" id="postForm">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" id="submitPostButton">Add Post</button>
+        <button type="submit" id="submitPostButton" class="btn-edit">Add Post</button>
     </form>
     {% endif %}
 </div>
@@ -16,10 +16,10 @@
     <div class="row">
 
         <!-- News Posts -->
-        <div class="col-12 mt-3 left">
+        <div class="col-12 mt-3 center">
             <div class="row">
                 {% for News_Post in news_post_list %}
-                <div class="post-container col-md-10">
+                <div class="post-container col-md-8">
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="image-container">  
@@ -32,6 +32,7 @@
                             <hr />
                             <p class="card-text text-muted h6">{{ News_Post.created_on }}
                             </p>
+                            <p class="text-end me-3">{{ News_Post.comment_count }} <i class="far fa-comment"></i></p>
                             {% if user.is_authenticated and user == News_Post.author %}
                             <a href="{% url 'post_edit' News_Post.slug %}" class="btn btn-primary btn-edit-post">Edit</a>
                             <a href="{% url 'post_delete' News_Post.slug %}" class="btn btn-danger btn-delete-post">Delete</a>

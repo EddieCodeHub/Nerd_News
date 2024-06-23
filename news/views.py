@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.db.models import Sum, Case, When, IntegerField
+from django.db.models import Sum, Case, When, IntegerField, Count
+from django.views.generic import ListView   
 from .models import News_Post, Comment, Vote
 from .forms import CommentForm, NewsPostForm
 
@@ -29,6 +30,9 @@ class news_post_list(generic.ListView):
             )
             return redirect('home')
         return self.get(request, *args, **kwargs)
+    
+    def get_queryset(self):
+        return News_Post.objects.filter(status=1).annotate(comment_count=Count('comments'))
 
 
 def post_detail(request, slug):
