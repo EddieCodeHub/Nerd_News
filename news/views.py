@@ -2,17 +2,16 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.db.models import Sum, Case, When, IntegerField, Count
-from django.views.generic import ListView   
+from django.db.models import Sum, Case, When, IntegerField, Count  
 from .models import News_Post, Comment, Vote
 from .forms import CommentForm, NewsPostForm
 
 
 # Create your views here.
 class news_post_list(generic.ListView):
-    queryset = News_Post.objects.all()
+    queryset = News_Post.objects.filter(status=1)
     template_name = "news/index.html"
-    paginate_by = 3
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -111,7 +110,7 @@ def comment_delete(request, slug, comment_id):
     """
     view to delete comment
     """
-    queryset = News_Post.objects.filter(status=1)
+    queryset = News_Post.objects.filter(status=1).order_by('-created_on')
     post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 

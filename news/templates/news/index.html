@@ -3,12 +3,12 @@
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="">
+<div class="post-form">
     {% if user.is_authenticated %}
     <form method="post" action="{% url 'home' %}" id="postForm">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" id="submitPostButton" class="btn-edit">Add Post</button>
+        <button type="submit" id="submitPostButton" class="btn-post">Add Post</button>
     </form>
     {% endif %}
 </div>
@@ -19,7 +19,7 @@
         <div class="col-12 mt-3 center">
             <div class="row">
                 {% for News_Post in news_post_list %}
-                <div class="post-container col-md-8">
+                <div class="col-md-10 post-container">
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="image-container">  

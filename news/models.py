@@ -16,17 +16,13 @@ class News_Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=1)
-
+    
     class Meta:
         ordering = ['-created_on']
-    
+
     def __str__(self):
         return f"{self.title} written by {self.author}"
     
-    def save(self, *args, **kwargs):
-        if not self.summary:
-            self.summary = Truncator(self.content).chars(100)
-        super(News_Post, self).save(*args, **kwargs)
 
 
 class Comment(models.Model):
