@@ -7,8 +7,13 @@ from .models import News_Post, Comment, Vote
 from .forms import CommentForm, NewsPostForm
 
 
-# Create your views here.
+
 class news_post_list(generic.ListView):
+    """
+    Display a list of all published News Post objects.
+    
+    logged in users can add posts
+    """
     queryset = News_Post.objects.filter(status=1)
     template_name = "news/index.html"
     paginate_by = 10
@@ -36,16 +41,9 @@ class news_post_list(generic.ListView):
 
 def post_detail(request, slug):
     """
-    Display an individual :model:`news.News_Post`.
+    Displays a selected post in full using "post detail" template.
 
-    **Context**
-
-    ``post``
-        An instance of :model:`news.News_Post`.
-
-    **Template:**
-
-    :template:`news/post_detail.html`
+    logged in users can add comments
     """
 
     queryset = News_Post.objects.filter(status=1)
@@ -85,7 +83,7 @@ def post_detail(request, slug):
 
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+    view to Handle user editing of comments
     """
     if request.method == "POST":
 
@@ -108,7 +106,7 @@ def comment_edit(request, slug, comment_id):
 
 def comment_delete(request, slug, comment_id):
     """
-    view to delete comment
+    view to handle user deletion of comments
     """
     queryset = News_Post.objects.filter(status=1).order_by('-created_on')
     post = get_object_or_404(queryset, slug=slug)
@@ -141,7 +139,7 @@ def add_post(request):
 
 def post_delete(request, slug):
     """
-    view to delete post
+    view to handle user deletion of posts
     """
     post = get_object_or_404(News_Post, slug=slug)
     if post.author == request.user:
@@ -154,6 +152,9 @@ def post_delete(request, slug):
 
 
 def vote(request, comment_id):
+    """
+    View to handle user voting on comments
+    """
     comment = get_object_or_404(Comment, id=comment_id)
     value = int(request.POST['value'])
     post = get_object_or_404(News_Post, id=comment.post.id)

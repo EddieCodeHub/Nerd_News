@@ -8,6 +8,9 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 # Create your models here.
 class News_Post(models.Model):
+    """
+    Model for handling News posts
+    """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="News_posts")
@@ -26,6 +29,9 @@ class News_Post(models.Model):
 
 
 class Comment(models.Model):
+    """
+    Model for handling comments on News posts
+    """
     post = models.ForeignKey(News_Post, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
     body = models.TextField()
@@ -41,6 +47,9 @@ class Comment(models.Model):
     
 
 class Vote(models.Model):
+    """
+    Model for handling votes on comments
+    """
     UPVOTE = 1
     DOWNVOTE = -1
 
