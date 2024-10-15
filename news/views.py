@@ -139,27 +139,6 @@ def add_post(request):
     return redirect('home')
         
 
-def post_edit(request, slug):
-    """
-    view to edit posts
-    """
-    post = get_object_or_404(News_Post, slug=slug)
-    if request.method == "POST":
-        post_form = NewsPostForm(data=request.POST, instance=post)
-
-        if post_form.is_valid() and post.author == request.user:
-            post = post_form.save()
-            messages.add_message(request, messages.SUCCESS, 'Post Updated!')
-            return redirect('home')
-        else:
-            messages.add_message(request, messages.ERROR, 'Error updating post!')
-            return render(request, 'news/index.html', {'form': post_form})
-    else:
-        post_form = NewsPostForm(instance=post)
-    return render(request, 'news/index.html', {'form': post_form})
-
-
-
 def post_delete(request, slug):
     """
     view to delete post

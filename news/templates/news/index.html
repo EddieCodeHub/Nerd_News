@@ -34,7 +34,6 @@
                             </p>
                             <p class="text-end me-3">{{ News_Post.comment_count }} <i class="far fa-comment"></i></p>
                             {% if user.is_authenticated and user == News_Post.author %}
-                            <a href="{% url 'post_edit' News_Post.slug %}" class="btn btn-primary btn-edit-post">Edit</a>
                             <a href="{% url 'post_delete' News_Post.slug %}" class="btn btn-danger btn-delete-post">Delete</a>
                             {% endif %}
                         </div>

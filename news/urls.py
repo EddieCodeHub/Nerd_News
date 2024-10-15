@@ -10,6 +10,5 @@ urlpatterns = [
      path('<slug:slug>/delete_comment/<int:comment_id>',
           views.comment_delete, name='comment_delete'),
      path('vote/<int:comment_id>/', views.vote, name='vote'),
-     path('post/<slug:slug>/edit/', views.post_edit, name='post_edit'),
      path('post/<slug:slug>/delete/', views.post_delete, name='post_delete'),
 ]
