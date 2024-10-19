@@ -198,3 +198,22 @@ body {
     margin-bottom: 10px;
     border-radius: 5px;
 }
+
+.login-box {
+    background-color: rgba(128, 128, 128, 0.3);
+    margin-top: 5%;
+    padding: 2%;
+}
+
+.link {
+    color: #00802b;
+}
+
+.alert {
+    color: #E84610;
+    background-color: #ffcccb;
+    border: 1px solid #E84610;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}

@@ -208,3 +208,12 @@ body {
 .link {
     color: #00802b;
 }
+
+.alert {
+    color: #E84610;
+    background-color: #ffcccb;
+    border: 1px solid #E84610;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
