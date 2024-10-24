@@ -34,7 +34,7 @@
                             </p>
                             <p class="text-end me-3">{{ News_Post.comment_count }} <i class="far fa-comment"></i></p>
                             {% if user.is_authenticated and user == News_Post.author %}
-                            <a href="{% url 'post_delete' News_Post.slug %}" class="btn btn-danger btn-delete-post">Delete</a>
+                            <a post_id="{{ News_Post.slug }}" class="btn btn-danger btn-delete-post">Delete</a>
                             {% endif %}
                         </div>
                     </div>
@@ -59,6 +59,33 @@
         </ul>
     </nav>
     {% endif %}
+</div>
+
+
+<!-- Modal for deleting a post -->
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"
+            id="deleteModalLabel">Delete post?</h5>
+            <button type="button" class="btn-close"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to delete your post?
+            This action cannot be undone.
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal">Close</button>
+            <a id="deleteConfirm" href="#" class="btn 
+            btn-danger" post_id="{{ News_Post.slug }}">Delete</a>
+            
+        </div>
+        </div>
+    </div>
 </div>
 
 <!-- index.html content ends here -->
