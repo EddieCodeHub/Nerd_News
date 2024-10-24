@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.db.models import Sum, Case, When, IntegerField, Count  
+from django.db.models import Sum, Case, When, IntegerField, Count, Value  
+from django.db.models.functions import Coalesce
 from .models import News_Post, Comment, Vote
 from .forms import CommentForm, NewsPostForm
 
@@ -36,7 +37,7 @@ class news_post_list(generic.ListView):
         return self.get(request, *args, **kwargs)
     
     def get_queryset(self):
-        return News_Post.objects.filter(status=1).annotate(comment_count=Count('comments'))
+        return News_Post.objects.filter(status=1).annotate(comment_count=Count('comments')).order_by('-created_on')
 
 
 def post_detail(request, slug):
@@ -49,9 +50,9 @@ def post_detail(request, slug):
     queryset = News_Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
     comments = Comment.objects.filter(post=post).annotate(
-        upvotes=Sum(Case(When(votes__value=1, then=1), output_field=IntegerField())),
-        downvotes=Sum(Case(When(votes__value=-1, then=1), output_field=IntegerField())),
-    ).order_by('-upvotes')
+        upvotes=Coalesce(Sum(Case(When(votes__value=1, then=1), output_field=IntegerField())), Value(0)),
+        downvotes=Coalesce(Sum(Case(When(votes__value=-1, then=1), output_field=IntegerField())), Value(0)),
+    ).order_by('-upvotes', '-downvotes')
     comment_count = post.comments.count()
 
     if request.method == "POST":
