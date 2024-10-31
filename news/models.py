@@ -52,12 +52,12 @@ class Vote(models.Model):
     """
     UPVOTE = 1
     DOWNVOTE = -1
-
+    
     VOTE_CHOICES = (
         (UPVOTE, 'Upvote'),
         (DOWNVOTE, 'Downvote'),
     )
-
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='votes')
     value = models.IntegerField(choices=VOTE_CHOICES)
